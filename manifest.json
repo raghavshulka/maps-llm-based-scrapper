@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Google Maps Data Scraper",
+  "version": "1.0",
+  "description": "Scrapes contact information including emails from Google Maps search results",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.google.com/maps/*",
+    "https://maps.google.com/*",
+    "https://api.allorigins.win/*",
+    "https://cors-anywhere.herokuapp.com/*",
+    "https://thingproxy.freeboard.io/*",
+    "https://openrouter.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/maps/*", "https://maps.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.svg"
+  },
+  "icons": {
+    "16": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
+  }
+} 

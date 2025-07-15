@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Data Scraper</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="icon.svg" alt="Logo" class="logo">
+            <h1>Google Maps Data Scraper</h1>
+        </div>
+        
+        <div id="status" class="status"></div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">Businesses Found:</div>
+                <div class="stat-value" id="businessCount">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Emails Found:</div>
+                <div class="stat-value" id="emailCount">0</div>
+            </div>
+        </div>
+        
+        <div class="email-stats">
+            <div class="stat-small">
+                <span class="stat-label-small">Direct:</span>
+                <span class="stat-value-small" id="directEmailCount">0</span>
+            </div>
+            <div class="stat-small">
+                <span class="stat-label-small">Website:</span>
+                <span class="stat-value-small" id="websiteEmailCount">0</span>
+            </div>
+            <div class="stat-small">
+                <span class="stat-label-small">AI:</span>
+                <span class="stat-value-small" id="aiEmailCount">0</span>
+            </div>
+            <div class="stat-small">
+                <span class="stat-label-small">Inferred:</span>
+                <span class="stat-value-small" id="inferredEmailCount">0</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="startScraping" class="btn btn-primary">Start Scraping</button>
+            <button id="stopScraping" class="btn btn-danger" style="display: none;">Stop Scraping</button>
+        </div>
+        
+        <div class="settings">
+            <h3>Settings</h3>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="autoScroll" checked>
+                    Auto-scroll for more results
+                </label>
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="useGrokAPI" checked>
+                    Use AI Enhancement (OpenRouter API)
+                </label>
+            </div>
+            <div class="setting-group">
+                <label for="apiKey">OpenRouter API Key:</label>
+                <input type="password" id="apiKey" placeholder="Enter your API key">
+                <div class="api-controls">
+                    <button id="saveApiKey" class="btn btn-small">Save</button>
+                    <button id="testApiKey" class="btn btn-small btn-secondary">Test</button>
+                    <a href="https://openrouter.ai/keys" target="_blank" class="help-link">Get API Key</a>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label for="scrapeDelay">Delay between scrapes (ms):</label>
+                <input type="number" id="scrapeDelay" value="1500" min="500" max="5000">
+            </div>
+            
+            <div class="setting-group">
+                <label for="customPrompt">Custom AI Prompt:</label>
+                <textarea id="customPrompt" placeholder="Enter your custom prompt for AI email generation" rows="3"></textarea>
+                <div class="help-text">Use {businessName}, {businessType}, and {location} as placeholders</div>
+            </div>
+        </div>
+        
+        <div class="scraped-data" id="scrapedData">
+            <h3>Scraped Data</h3>
+            <div class="data-controls">
+                <button id="exportCSV" class="btn btn-small">Export CSV</button>
+                <button id="clearData" class="btn btn-small btn-secondary">Clear</button>
+            </div>
+            <div id="results" class="results"></div>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html> 
